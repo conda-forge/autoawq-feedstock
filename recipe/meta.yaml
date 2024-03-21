@@ -1,5 +1,5 @@
 {% set name = "autoawq" %}
-{% set version = "0.1.6" %}
+{% set version = "0.2.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/casper-hansen/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 6b471d83222c3a090ea68f02a15d365afa25f0b5978a92e8265da075d5a6c6ad # 0.1.6
+  sha256: 01e2cb06bf3370553acbd85ca6fd00e99f43862947f137ea527c538dac1c4cc6 # 0.1.6
   # sha256: 39e6642c01eca1a15806479d77c91228f9b4ff95827e62baac7019d0cd9bd938  # 0.1.8
 
 build:
@@ -25,14 +25,13 @@ build:
     mv tmpsetup.py setup.py
     {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
-  skip: True  # [cuda_compiler_version == "None"]
-  skip: True  # [cuda_compiler_version == "11.2"]
-  skip: True  # [osx or win]
+  skip: true  # [cuda_compiler_version == "None"]
+  skip: true  # [cuda_compiler_version == "11.2"]
+  skip: true  # [osx or win]
   missing_dso_whitelist:
     - '*/libtorch_python.so'
 
 requirements:
-  
   build:
     - cmake
     - make
