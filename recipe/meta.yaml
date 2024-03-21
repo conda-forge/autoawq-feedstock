@@ -7,8 +7,7 @@ package:
 
 source:
   url: https://github.com/casper-hansen/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 01e2cb06bf3370553acbd85ca6fd00e99f43862947f137ea527c538dac1c4cc6 # 0.1.6
-  # sha256: 39e6642c01eca1a15806479d77c91228f9b4ff95827e62baac7019d0cd9bd938  # 0.1.8
+  sha256: 01e2cb06bf3370553acbd85ca6fd00e99f43862947f137ea527c538dac1c4cc6
 
 build:
   # noarch: python
@@ -62,7 +61,6 @@ requirements:
     - protobuf
     - torchvision
     - tabulate
-    - cudatoolkit
     - libtorch
 
 test:
