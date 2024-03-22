@@ -32,14 +32,12 @@ build:
     - '*/libtorch_python.so'
 
 requirements:
-  
   build:
     - cmake
     - make
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-
   host:
     - python
     - packaging
