@@ -46,6 +46,7 @@ requirements:
     - wheel
     - pip
     - libxcrypt
+    - requests
   run:
     - python
     - pytorch
@@ -62,6 +63,7 @@ requirements:
     - torchvision
     - tabulate
     - libtorch
+    - requests
 
 test:
   imports:
