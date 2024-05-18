@@ -24,7 +24,7 @@ build:
     cat setup.py | sed 's/os.environ\["CC"\] = "g++"//' | sed 's/os.environ\["CXX"\] = "g++"//' > tmpsetup.py
     mv tmpsetup.py setup.py
     {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
   skip: True  # [cuda_compiler_version == "None"]
   skip: True  # [cuda_compiler_version == "11.2"]
   skip: True  # [osx or win]
@@ -37,6 +37,7 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
 
