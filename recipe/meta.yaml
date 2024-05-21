@@ -39,6 +39,7 @@ requirements:
     - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
+    - requests
 
   host:
     - python
