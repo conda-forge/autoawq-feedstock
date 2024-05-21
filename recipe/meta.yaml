@@ -65,6 +65,7 @@ requirements:
     - tabulate
     - cudatoolkit
     - libtorch
+    - requests
 
 test:
   imports:
