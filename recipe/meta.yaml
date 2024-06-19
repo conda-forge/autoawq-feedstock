@@ -70,8 +70,8 @@ requirements:
 test:
   imports:
     - awq
-  commands:
-    - pip check
+  # commands: # pending https://github.com/conda-forge/tcolorpy-feedstock/issues/12
+  #   - pip check
   requires:
     - pip
 
@@ -84,3 +84,4 @@ about:
 extra:
   recipe-maintainers:
     - mediocretech
+    - h-vetinari
