@@ -24,10 +24,11 @@ build:
     cat setup.py | sed 's/os.environ\["CC"\] = "g++"//' | sed 's/os.environ\["CXX"\] = "g++"//' > tmpsetup.py
     mv tmpsetup.py setup.py
     {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
-  skip: true  # [cuda_compiler_version == "None"]
-  skip: true  # [cuda_compiler_version == "11.2"]
-  skip: true  # [osx or win]
+  number: 1
+  skip: True  # [cuda_compiler_version == "None"]
+  skip: True  # [cuda_compiler_version == "11.2"]
+  skip: True  # [osx or win]
+  skip: True  # [py == 38]
   missing_dso_whitelist:
     - '*/libtorch_python.so'
 
@@ -36,6 +37,7 @@ requirements:
     - cmake
     - make
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
 
@@ -68,8 +70,8 @@ requirements:
 test:
   imports:
     - awq
-  commands:
-    - pip check
+  # commands: # pending https://github.com/conda-forge/tcolorpy-feedstock/issues/12
+  #   - pip check
   requires:
     - pip
 
@@ -82,3 +84,4 @@ about:
 extra:
   recipe-maintainers:
     - mediocretech
+    - h-vetinari
