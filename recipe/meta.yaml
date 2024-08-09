@@ -9,8 +9,6 @@ source:
   sha256: e6a3451d1d4cf69cd81cbb816593d6c4144d323c221354b56d1496afd46ec129
 
 build:
-  rpaths:
-    - lib/
   script_env:
     - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX  # [cuda_compiler_version == "11.8"]
     - TORCH_CUDA_ARCH_LIST=5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX  # [(cuda_compiler_version or "").startswith("12")]
@@ -22,8 +20,6 @@ build:
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
   skip: true  # [py == 38]
-  missing_dso_whitelist:
-    - '*/libtorch_python.so'
 
 requirements:
   build:
