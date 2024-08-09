@@ -34,14 +34,11 @@ outputs:
     version: {{ kernel_version }}
     build:
       activate_in_script: true
-      script_env:
-        - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX  # [cuda_compiler_version == "11.8"]
-        - TORCH_CUDA_ARCH_LIST=5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX  # [(cuda_compiler_version or "").startswith("12")]
-      script: |
-        sed -i 's/os.environ\["CC"\] = "g++"//' kernels/setup.py
-        sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
-        cd kernels
-        {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+      script:
+        - sed -i 's/os.environ\["CC"\] = "g++"//' kernels/setup.py
+        - sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
+        - cd kernels
+        - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
       skip: true  # [cuda_compiler_version == "None"]
       skip: true  # [osx or win]
       skip: true  # [py == 38]
