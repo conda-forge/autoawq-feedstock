@@ -41,18 +41,18 @@ requirements:
     - libxcrypt
   run:
     - python
-    - pytorch
-    - transformers >=4.35.0
-    - tokenizers >=0.12.1
     - accelerate
-    - sentencepiece
-    - lm_eval
-    - texttable
-    - toml
     - attributedict
+    - lm_eval
     - protobuf
-    - torchvision
+    - pytorch
+    - sentencepiece
     - tabulate
+    - texttable
+    - tokenizers >=0.12.1
+    - toml
+    - torchvision
+    - transformers >=4.35.0
 
 test:
   imports:
