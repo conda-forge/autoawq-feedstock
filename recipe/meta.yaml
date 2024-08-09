@@ -42,16 +42,16 @@ requirements:
   run:
     - python
     - accelerate
-    - attributedict
-    - lm_eval
+    - datasets
+    - evaluate
+    - lm_eval ==0.4.1
     - protobuf
-    - sentencepiece
+    - scipy
     - tabulate
-    - texttable
     - tokenizers >=0.12.1
-    - toml
-    - torchvision
     - transformers >=4.35.0
+    - typing_extensions >=4.8
+    - zstandard
 
 test:
   imports:
