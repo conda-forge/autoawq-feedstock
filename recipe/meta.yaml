@@ -48,6 +48,7 @@ requirements:
     - pytorch >=2.1.0
     - wheel
     - pip
+    - requests
     - libxcrypt
   run:
     - python
