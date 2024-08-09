@@ -7,16 +7,13 @@ package:
 
 source:
   url: https://github.com/casper-hansen/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: e6a3451d1d4cf69cd81cbb816593d6c4144d323c221354b56d1496afd46ec129 # 0.1.6
-  # sha256: 39e6642c01eca1a15806479d77c91228f9b4ff95827e62baac7019d0cd9bd938  # 0.1.8
+  sha256: e6a3451d1d4cf69cd81cbb816593d6c4144d323c221354b56d1496afd46ec129
 
 build:
-  # noarch: python
   rpaths:
     - lib/
   script_env:
     - DISABLE_QIGEN=1 # coming soon
-    - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX      # [cuda_compiler_version == "11.2"]
     - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX  # [cuda_compiler_version == "11.8"]
     - TORCH_CUDA_ARCH_LIST=5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX  # [(cuda_compiler_version or "").startswith("12")]
     - CPATH=${BUILD_PREFIX}/include
@@ -26,7 +23,6 @@ build:
     {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   skip: true  # [cuda_compiler_version == "None"]
-  skip: true  # [cuda_compiler_version == "11.2"]
   skip: true  # [osx or win]
   skip: true  # [py == 38]
   missing_dso_whitelist:
