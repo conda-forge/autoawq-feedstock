@@ -34,7 +34,7 @@ requirements:
     - python
     - packaging
     - setuptools >=49.4.0
-    - pytorch >=2.1.0
+    - pytorch
     - wheel
     - pip
     - requests
@@ -45,7 +45,6 @@ requirements:
     - attributedict
     - lm_eval
     - protobuf
-    - pytorch
     - sentencepiece
     - tabulate
     - texttable
