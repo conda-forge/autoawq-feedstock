@@ -79,11 +79,6 @@ outputs:
         - {{ pin_subpackage('autoawq_kernels', exact=True) }}
         - accelerate
         - datasets
-        - evaluate
-        - lm_eval ==0.4.1
-        - protobuf
-        - scipy
-        - tabulate
         - tokenizers >=0.12.1
         - transformers >=4.35.0
         - typing_extensions >=4.8
@@ -96,6 +91,25 @@ outputs:
       commands:
         # pending https://github.com/conda-forge/tcolorpy-feedstock/issues/12
         # - pip check
+
+  - name: autoawq-eval
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=3.8
+        - {{ pin_subpackage('autoawq', exact=True) }}
+      run:
+        - python >=3.8
+        - {{ pin_subpackage('autoawq', exact=True) }}
+        - evaluate
+        - lm_eval ==0.4.1
+        - protobuf
+        - scipy
+        - tabulate
+    test:
+      commands:
+        - echo "pure metapackage"
 
 about:
   home: https://github.com/casper-hansen/AutoAWQ
