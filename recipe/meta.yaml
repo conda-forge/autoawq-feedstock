@@ -61,7 +61,6 @@ requirements:
     - protobuf
     - torchvision
     - tabulate
-    - cudatoolkit
     - libtorch
 
 test:
