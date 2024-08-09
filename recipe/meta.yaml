@@ -1,6 +1,12 @@
 {% set version = "0.2.6" %}
 {% set kernel_version = "0.0.7" %}
 
+{% if cuda_compiler_version != "None" %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
+{% else %}
+{% set cuda_major = 0 %}
+{% endif %}
+
 package:
   name: autoawq
   version: {{ version }}
@@ -52,6 +58,13 @@ outputs:
         - python
         - pip
         - pytorch
+        {% if cuda_major >= 12 %}
+        - cuda-version {{ cuda_compiler_version }}
+        - cuda-cudart-dev
+        - libcublas-dev
+        - libcusolver-dev
+        - libcusparse-dev
+        {% endif %}
     test:
       imports:
         - awq_ext
