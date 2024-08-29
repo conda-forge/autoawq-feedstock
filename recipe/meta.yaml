@@ -22,7 +22,6 @@ build:
   number: 0
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
-  skip: true  # [py == 38]
 
 # break CI jobs per python version
 requirements:
@@ -39,9 +38,6 @@ outputs:
         - sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
         - cd kernels
         - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-      skip: true  # [cuda_compiler_version == "None"]
-      skip: true  # [osx or win]
-      skip: true  # [py == 38]
 
     requirements:
       build:
@@ -69,9 +65,6 @@ outputs:
   - name: autoawq
     build:
       script:  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-      skip: true  # [cuda_compiler_version == "None"]
-      skip: true  # [osx or win]
-      skip: true  # [py == 38]
     requirements:
       build:
       host:
