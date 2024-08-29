@@ -1,80 +1,121 @@
-{% set name = "autoawq" %}
-{% set version = "0.1.6" %}
+{% set version = "0.2.6" %}
+{% set kernel_version = "0.0.7" %}
+
+{% if cuda_compiler_version != "None" %}
+{% set cuda_major = environ.get("cuda_compiler_version", "11.8").split(".")[0] | int %}
+{% else %}
+{% set cuda_major = 0 %}
+{% endif %}
 
 package:
-  name: {{ name|lower }}
+  name: autoawq
   version: {{ version }}
 
 source:
-  url: https://github.com/casper-hansen/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 6b471d83222c3a090ea68f02a15d365afa25f0b5978a92e8265da075d5a6c6ad # 0.1.6
-  # sha256: 39e6642c01eca1a15806479d77c91228f9b4ff95827e62baac7019d0cd9bd938  # 0.1.8
+  - url: https://github.com/casper-hansen/AutoAWQ/archive/refs/tags/v{{ version }}.tar.gz
+    sha256: e6a3451d1d4cf69cd81cbb816593d6c4144d323c221354b56d1496afd46ec129
+  - url: https://github.com/casper-hansen/AutoAWQ_kernels/archive/refs/tags/v{{ kernel_version }}.tar.gz
+    sha256: bae8d0fe5a2aff5112c3270fa2d5a6312d5d5693c214d7174b7ff42d595eb0b9
+    folder: kernels
 
 build:
-  # noarch: python
-  rpaths:
-    - lib/
-  script_env:
-    - DISABLE_QIGEN=1 # coming soon
-    - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6+PTX      # [cuda_compiler_version == "11.2"]
-    - TORCH_CUDA_ARCH_LIST=3.5;5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9+PTX  # [cuda_compiler_version == "11.8"]
-    - TORCH_CUDA_ARCH_LIST=5.0;6.0;6.1;7.0;7.5;8.0;8.6;8.9;9.0+PTX  # [(cuda_compiler_version or "").startswith("12")]
-    - CPATH=${BUILD_PREFIX}/include
-  script: |
-    cat setup.py | sed 's/os.environ\["CC"\] = "g++"//' | sed 's/os.environ\["CXX"\] = "g++"//' > tmpsetup.py
-    mv tmpsetup.py setup.py
-    {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
-  skip: True  # [cuda_compiler_version == "None"]
-  skip: True  # [cuda_compiler_version == "11.2"]
-  skip: True  # [osx or win]
-  skip: True  # [py == 38]
-  missing_dso_whitelist:
-    - '*/libtorch_python.so'
+  number: 0
+  skip: true  # [cuda_compiler_version == "None"]
+  skip: true  # [osx or win]
 
+# break CI jobs per python version
 requirements:
-  
-  build:
-    - cmake
-    - make
-    - {{ compiler('c') }}
-    - {{ stdlib("c") }}
-    - {{ compiler('cxx') }}
-    - {{ compiler('cuda') }}
-
   host:
     - python
-    - packaging
-    - setuptools >=49.4.0
-    - pytorch >=2.1.0
-    - wheel
-    - pip
-    - libxcrypt
-  run:
-    - python
-    - pytorch
-    - torchvision
-    - transformers >=4.35.0
-    - tokenizers >=0.12.1
-    - accelerate
-    - sentencepiece
-    - lm_eval
-    - texttable
-    - toml
-    - attributedict
-    - protobuf
-    - torchvision
-    - tabulate
-    - cudatoolkit
-    - libtorch
 
-test:
-  imports:
-    - awq
-  # commands: # pending https://github.com/conda-forge/tcolorpy-feedstock/issues/12
-  #   - pip check
-  requires:
-    - pip
+outputs:
+  - name: autoawq_kernels
+    version: {{ kernel_version }}
+    build:
+      activate_in_script: true
+      script:
+        - sed -i 's/os.environ\["CC"\] = "g++"//' kernels/setup.py
+        - sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
+        - cd kernels
+        - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+    requirements:
+      build:
+        - cmake
+        - make
+        - {{ stdlib('c') }}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('cuda') }}
+      host:
+        - python
+        - pip
+        - setuptools
+        - pytorch
+        {% if cuda_major >= 12 %}
+        - cuda-version {{ cuda_compiler_version }}
+        - cuda-cudart-dev
+        - libcublas-dev
+        - libcusolver-dev
+        - libcusparse-dev
+        {% endif %}
+    test:
+      imports:
+        - awq_ext
+
+{% if False %}
+  - name: autoawq
+    build:
+      script:  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+    requirements:
+      build:
+      host:
+        - python
+        - {{ pin_subpackage('autoawq_kernels', exact=True) }}
+        - packaging
+        - setuptools >=49.4.0
+        - pytorch
+        - wheel
+        - pip
+        - requests
+        - libxcrypt
+      run:
+        - python
+        - {{ pin_subpackage('autoawq_kernels', exact=True) }}
+        - accelerate
+        - datasets
+        - tokenizers >=0.12.1
+        - transformers >=4.35.0
+        - typing_extensions >=4.8
+        - zstandard
+    test:
+      imports:
+        - awq
+      requires:
+        - pip
+      commands:
+        # pending https://github.com/conda-forge/tcolorpy-feedstock/issues/12
+        # - pip check
+
+  - name: autoawq-eval
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python >=3.8
+        - {{ pin_subpackage('autoawq', exact=True) }}
+      run:
+        - python >=3.8
+        - {{ pin_subpackage('autoawq', exact=True) }}
+        - evaluate
+        - lm_eval ==0.4.1
+        - protobuf
+        - scipy
+        - tabulate
+    test:
+      commands:
+        - echo "pure metapackage"
+{% endif %}
 
 about:
   home: https://github.com/casper-hansen/AutoAWQ
