@@ -63,6 +63,7 @@ outputs:
       imports:
         - awq_ext
 
+{% if False %}
   - name: autoawq
     build:
       script:  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -114,6 +115,7 @@ outputs:
     test:
       commands:
         - echo "pure metapackage"
+{% endif %}
 
 about:
   home: https://github.com/casper-hansen/AutoAWQ
