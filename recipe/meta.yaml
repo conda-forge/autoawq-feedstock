@@ -50,6 +50,7 @@ outputs:
       host:
         - python
         - pip
+        - setuptools
         - pytorch
         {% if cuda_major >= 12 %}
         - cuda-version {{ cuda_compiler_version }}
