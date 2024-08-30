@@ -104,10 +104,10 @@ outputs:
     requirements:
       host:
         - python >=3.8
-        - {{ pin_subpackage('autoawq', exact=True) }}
+        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
       run:
         - python >=3.8
-        - {{ pin_subpackage('autoawq', exact=True) }}
+        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
         - protobuf
