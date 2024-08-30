@@ -19,7 +19,7 @@ source:
     folder: kernels
 
 build:
-  number: 0
+  number: 1
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
 
@@ -33,6 +33,7 @@ outputs:
     version: {{ kernel_version }}
     build:
       activate_in_script: true
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       script:
         - sed -i 's/os.environ\["CC"\] = "g++"//' kernels/setup.py
         - sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
@@ -65,6 +66,7 @@ outputs:
 
   - name: autoawq
     build:
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       script:  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       build:
