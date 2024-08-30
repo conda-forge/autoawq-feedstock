@@ -8,7 +8,7 @@
 {% endif %}
 
 package:
-  name: autoawq
+  name: autoawq-split
   version: {{ version }}
 
 source:
@@ -127,3 +127,4 @@ extra:
   recipe-maintainers:
     - mediocretech
     - h-vetinari
+  feedstock-name: autoawq
