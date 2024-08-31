@@ -105,10 +105,10 @@ outputs:
       skip: true  # [py!=312]
     requirements:
       host:
-        - python >=3.8
+        - python >=3.9
         - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
       run:
-        - python >=3.8
+        - python >=3.9
         - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
