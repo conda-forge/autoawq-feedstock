@@ -8,7 +8,7 @@
 {% endif %}
 
 package:
-  name: autoawq
+  name: autoawq-split
   version: {{ version }}
 
 source:
@@ -19,7 +19,7 @@ source:
     folder: kernels
 
 build:
-  number: 0
+  number: 1
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
 
@@ -33,6 +33,7 @@ outputs:
     version: {{ kernel_version }}
     build:
       activate_in_script: true
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       script:
         - sed -i 's/os.environ\["CC"\] = "g++"//' kernels/setup.py
         - sed -i 's/os.environ\["CXX"\] = "g++"//' kernels/setup.py
@@ -63,9 +64,9 @@ outputs:
       imports:
         - awq_ext
 
-{% if False %}
   - name: autoawq
     build:
+      string: cuda{{ cuda_compiler_version | replace('.', '') }}py{{ CONDA_PY }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}
       script:  {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
     requirements:
       build:
@@ -100,13 +101,15 @@ outputs:
   - name: autoawq-eval
     build:
       noarch: python
+      # noarch pulls in a specific python; needs to match the variant config here
+      skip: true  # [py!=312]
     requirements:
       host:
-        - python >=3.8
-        - {{ pin_subpackage('autoawq', exact=True) }}
+        - python >=3.9
+        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
       run:
-        - python >=3.8
-        - {{ pin_subpackage('autoawq', exact=True) }}
+        - python >=3.9
+        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
         - protobuf
@@ -115,7 +118,6 @@ outputs:
     test:
       commands:
         - echo "pure metapackage"
-{% endif %}
 
 about:
   home: https://github.com/casper-hansen/AutoAWQ
@@ -127,3 +129,4 @@ extra:
   recipe-maintainers:
     - mediocretech
     - h-vetinari
+  feedstock-name: autoawq
