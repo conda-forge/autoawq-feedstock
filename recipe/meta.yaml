@@ -101,6 +101,8 @@ outputs:
   - name: autoawq-eval
     build:
       noarch: python
+      # noarch pulls in a specific python; needs to match the variant config here
+      skip: true  # [py!=312]
     requirements:
       host:
         - python >=3.8
