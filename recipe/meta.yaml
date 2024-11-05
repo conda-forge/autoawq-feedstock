@@ -84,6 +84,9 @@ outputs:
         - pip
         - requests
         - libxcrypt
+        {% if cuda_major >= 12 %}
+        - cuda-version {{ cuda_compiler_version }}
+        {% endif %}
       run:
         - python
         - {{ pin_subpackage('autoawq_kernels', exact=True) }}
