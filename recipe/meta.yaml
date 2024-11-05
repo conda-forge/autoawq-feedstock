@@ -7,6 +7,10 @@
 {% set cuda_major = 0 %}
 {% endif %}
 
+{% if python_min is undefined %}
+{% set python_min = "3.9" %}
+{% endif %}
+
 package:
   name: autoawq-split
   version: {{ version }}
@@ -19,7 +23,7 @@ source:
     folder: kernels
 
 build:
-  number: 1
+  number: 2
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
 
@@ -80,6 +84,9 @@ outputs:
         - pip
         - requests
         - libxcrypt
+        {% if cuda_major >= 12 %}
+        - cuda-version {{ cuda_compiler_version }}
+        {% endif %}
       run:
         - python
         - {{ pin_subpackage('autoawq_kernels', exact=True) }}
@@ -101,14 +108,16 @@ outputs:
   - name: autoawq-eval
     build:
       noarch: python
-      # noarch pulls in a specific python; needs to match the variant config here
-      skip: true  # [py!=312]
+      # noarch builds only for python_min; needs to match the variant config here
+      {% if py != python_min.replace(".", "") %}
+      skip: true
+      {% endif %}
     requirements:
       host:
-        - python >=3.9
+        - python {{ python_min }}.*
         - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
       run:
-        - python >=3.9
+        - python >={{ python_min }}
         - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
