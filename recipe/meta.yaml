@@ -1,4 +1,4 @@
-{% set version = "0.2.7.post2" %}
+{% set version = "0.2.7.post3" %}
 {% set kernel_version = "0.0.7" %}
 
 {% if cuda_compiler_version != "None" %}
@@ -17,7 +17,7 @@ package:
 
 source:
   - url: https://github.com/casper-hansen/AutoAWQ/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: ff6cac0d318b515de16a368eaec4369815d168dc9ce8c074fb138527877f135c
+    sha256: 11a85f979060b71b1e2265659b11e37a3d067707956cc765106887234509b0f8
   - url: https://github.com/casper-hansen/AutoAWQ_kernels/archive/refs/tags/v{{ kernel_version }}.tar.gz
     sha256: bae8d0fe5a2aff5112c3270fa2d5a6312d5d5693c214d7174b7ff42d595eb0b9
     folder: kernels
