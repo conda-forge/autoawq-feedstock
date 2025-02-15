@@ -23,7 +23,7 @@ source:
     folder: kernels
 
 build:
-  number: 0
+  number: 1
   skip: true  # [cuda_compiler_version == "None"]
   skip: true  # [osx or win]
 
