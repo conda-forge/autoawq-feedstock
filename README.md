@@ -27,38 +27,38 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.10.____cpython</td>
+              <td>linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.10.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=21855&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.10.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.10.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.11.____cpython</td>
+              <td>linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.11.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=21855&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.11.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.11.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.12.____cpython</td>
+              <td>linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.12.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=21855&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.12.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.12.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.13.____cp313</td>
+              <td>linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.13.____cp313</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=21855&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.13.____cp313" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.13.____cp313" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.9.____cpython</td>
+              <td>linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.9.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=21855&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_c_compiler_version13cuda_compilercuda-nvcccuda_compiler_version12.6cxx_compiler_version13python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/autoawq-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_cuda_compilercuda-nvcccuda_compiler_version12.6python3.9.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
@@ -75,7 +75,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq-green.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq_kernels-green.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq__kernels-green.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) |
 
 Installing autoawq
 ==================
