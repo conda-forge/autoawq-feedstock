@@ -1,4 +1,4 @@
-{% set version = "0.2.8" %}
+{% set version = "0.2.9" %}
 {% set kernel_version = "0.0.7" %}
 
 {% if cuda_compiler_version != "None" %}
@@ -17,13 +17,13 @@ package:
 
 source:
   - url: https://github.com/casper-hansen/AutoAWQ/archive/refs/tags/v{{ version }}.tar.gz
-    sha256: c0bf51b183b6fd81c375e398fdc33f8a6f8e5df2e3eec30f1f51dbf81d71deed
+    sha256: 2036eefb582ecc6e8889ba5ad7205bb4c4b66cbfe8f30f1d7694cdd12ff12d18
   - url: https://github.com/casper-hansen/AutoAWQ_kernels/archive/refs/tags/v{{ kernel_version }}.tar.gz
     sha256: bae8d0fe5a2aff5112c3270fa2d5a6312d5d5693c214d7174b7ff42d595eb0b9
     folder: kernels
 
 build:
-  number: 2
+  number: 0
   # pytorch in conda-forge doesn't support CUDA 11.8 since v2.5 anymore
   skip: true  # [cuda_compiler_version in ("None", "11.8")]
   skip: true  # [osx or win]
