@@ -75,6 +75,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq-green.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq.svg)](https://anaconda.org/conda-forge/autoawq) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq--eval-green.svg)](https://anaconda.org/conda-forge/autoawq-eval) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq-eval.svg)](https://anaconda.org/conda-forge/autoawq-eval) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq-eval.svg)](https://anaconda.org/conda-forge/autoawq-eval) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq-eval.svg)](https://anaconda.org/conda-forge/autoawq-eval) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-autoawq__kernels-green.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/autoawq_kernels.svg)](https://anaconda.org/conda-forge/autoawq_kernels) |
 
 Installing autoawq
@@ -87,16 +88,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `autoawq, autoawq_kernels` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `autoawq, autoawq-eval, autoawq_kernels` can be installed with `conda`:
 
 ```
-conda install autoawq autoawq_kernels
+conda install autoawq autoawq-eval autoawq_kernels
 ```
 
 or with `mamba`:
 
 ```
-mamba install autoawq autoawq_kernels
+mamba install autoawq autoawq-eval autoawq_kernels
 ```
 
 It is possible to list all of the versions of `autoawq` available on your platform with `conda`:
