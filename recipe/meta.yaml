@@ -116,10 +116,10 @@ outputs:
     requirements:
       host:
         - python {{ python_min }}.*
-        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
+        - autoawq {{ version }} *_{{ PKG_BUILDNUM }}
       run:
         - python >={{ python_min }}
-        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
+        - autoawq {{ version }} *_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
         - protobuf
