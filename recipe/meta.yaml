@@ -7,10 +7,6 @@
 {% set cuda_major = 0 %}
 {% endif %}
 
-{% if python_min is undefined %}
-{% set python_min = "3.9" %}
-{% endif %}
-
 package:
   name: autoawq-split
   version: {{ version }}
@@ -23,7 +19,7 @@ source:
     folder: kernels
 
 build:
-  number: 0
+  number: 1
   # pytorch in conda-forge doesn't support CUDA 11.8 since v2.5 anymore
   skip: true  # [cuda_compiler_version in ("None", "11.8")]
   skip: true  # [osx or win]
@@ -110,22 +106,22 @@ outputs:
     build:
       noarch: python
       # noarch builds only for python_min; needs to match the variant config here
-      {% if py != python_min.replace(".", "") %}
-      skip: true
-      {% endif %}
+      skip: true  # [not is_python_min]
     requirements:
       host:
         - python {{ python_min }}.*
-        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
+        - autoawq {{ version }} *_{{ PKG_BUILDNUM }}
       run:
         - python >={{ python_min }}
-        - autoawq =={{ version }}=*_{{ PKG_BUILDNUM }}
+        - autoawq {{ version }} *_{{ PKG_BUILDNUM }}
         - evaluate
         - lm_eval ==0.4.1
         - protobuf
         - scipy
         - tabulate
     test:
+      requires:
+        - python {{ python_min }}.*
       commands:
         - echo "pure metapackage"
 
